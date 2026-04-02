@@ -1,0 +1,8 @@
+feature_group,n_features,features
+antibiotic_class_exposure,2,"antibiotic_class, min_time_to_class"
+comorbidity,11,"has_cancer, has_chf, has_ckd, has_copd, has_dementia, has_diabetes, has_immunosuppression, has_liver_disease, has_other_comorbid, has_stroke, has_transplant"
+demographics,2,"age, gender"
+labs,31,"Period_Day, Q25_bun, Q25_cr, Q25_hco3, Q25_hgb, Q25_lactate, Q25_lymphocytes, Q25_na, Q25_neutrophils, Q25_plt, Q25_wbc, Q75_bun, Q75_cr, Q75_hco3, Q75_hgb, Q75_lactate, Q75_lymphocytes, Q75_na, Q75_neutrophils, Q75_plt, Q75_wbc, median_bun, median_cr, median_hco3, median_hgb, median_lactate, median_lymphocytes, median_na, median_neutrophils, median_plt, median_wbc"
+microbiology,2,"antibiotic, organism"
+prior_medications,3,"med_within_30_days, min_time_to_med, n_med_categories"
+vitals,15,"Q25_diasbp, Q25_heartrate, Q25_resprate, Q25_sysbp, Q25_temp, Q75_diasbp, Q75_heartrate, Q75_resprate, Q75_sysbp, Q75_temp, median_diasbp, median_heartrate, median_resprate, median_sysbp, median_temp"

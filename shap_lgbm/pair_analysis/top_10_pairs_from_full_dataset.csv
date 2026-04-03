@@ -1,0 +1,11 @@
+organism,antibiotic,count_full,organism_name,antibiotic_name
+16,21,38542,SERRATIA MARCESCENS,Other
+7,27,28710,ESCHERICHIA COLI,Trimethoprim/Sulfamethoxazole
+7,10,28632,ESCHERICHIA COLI,Ciprofloxacin
+7,14,28575,ESCHERICHIA COLI,Gentamicin
+7,2,28306,ESCHERICHIA COLI,Ampicillin
+7,24,27055,ESCHERICHIA COLI,Piperacillin/Tazobactam
+7,16,26406,ESCHERICHIA COLI,Levofloxacin
+7,5,26322,ESCHERICHIA COLI,Cefazolin
+7,9,25852,ESCHERICHIA COLI,Ceftriaxone
+7,18,25182,ESCHERICHIA COLI,Meropenem

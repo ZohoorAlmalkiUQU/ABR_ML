@@ -1,4 +1,4 @@
-# ABR_ML
+<!-- # ABR_ML -->
 
 This repository contains the code and experimental pipeline used in the study:
 
@@ -34,6 +34,7 @@ ABR_ML/
 ├── 03_EDA_sample.ipynb
 ├── 04_main_pipeline.ipynb
 ├── 05_dataset_statistics.ipynb
+├── 06_ablation_studies.ipynb
 ├── catboost_info/
 ├── doi_10_5061_dryad_jq2bvq8kp__v20250411/
 ├── figs/
@@ -68,19 +69,23 @@ Performs exploratory data analysis and inspection of the prepared sample.
 
 #### `04_main_pipeline.ipynb`
 
-Runs the core machine learning workflow, which may include:
+Runs the core machine learning workflow, which includes:
 
-* train/test splitting
-* patient-aware validation strategy
-* model training
-* hyperparameter tuning
-* calibration
-* performance evaluation
+* patient-level train/test splitting
+* group-aware cross-validation (GroupKFold)
+* model training and hyperparameter tuning
+* probability calibration
+* performance evaluation on a held-out test set
+* statistical comparison of models
 * explainability analysis
 
 #### `05_dataset_statistics.ipynb`
 
 Generates descriptive statistics for the final dataset.
+
+#### `06_ablation_studies.ipynb`
+
+Performs ablation experiments to assess the contribution of different feature groups to model performance.
 
 ---
 
@@ -94,6 +99,7 @@ Run the notebooks in order:
 4. `03_EDA_sample.ipynb`
 5. `04_main_pipeline.ipynb`
 6. `05_dataset_statistics.ipynb`
+7. `06_ablation_studies.ipynb`
 
 This sequence reflects the current repository layout and notebook naming convention.
 
@@ -104,7 +110,7 @@ This sequence reflects the current repository layout and notebook naming convent
 Depending on the notebook configuration, generated outputs may be saved in:
 
 * `results/` — model metrics, predictions, summaries, and evaluation artifacts
-* `shap/` — SHAP plots and feature importance outputs
+* `shap/` — SHAP plots, feature importance, and pair-specific analyses
 * `statistics/` — descriptive statistics tables and related summaries
 * `figs/` — manuscript-ready figures
 * `catboost_info/` — CatBoost training logs and metadata
@@ -353,11 +359,24 @@ Confidence intervals for key evaluation metrics are estimated using **bootstrap 
 
 #### Model Explainability
 
-Model interpretability is analyzed using **SHAP (SHapley Additive exPlanations)** to identify clinically relevant predictors of antibacterial resistance.
+Model interpretability is analyzed using **SHAP (SHapley Additive exPlanations)** to quantify feature contributions to model predictions.
 
-Confidence intervals are estimated using bootstrap resampling.
+Two complementary explainability analyses are performed:
+
+- **Global SHAP analysis:**  
+  Computes overall feature importance across the full test dataset using mean absolute SHAP values, identifying dominant predictors of antibacterial resistance.
+
+- **Pair-specific SHAP analysis:**  
+  SHAP analyses are conducted on subsets of the test data corresponding to specific **organism–antibiotic combinations**.  
+  This enables investigation of **context-dependent feature importance**, revealing how clinical and microbiological predictors vary depending on the pathogen and antibiotic being evaluated.
+
+This multi-level explainability framework provides deeper insight into model behavior and supports clinically meaningful interpretation of predictions.
 
 ---
+
+### Ablation Studies
+
+Ablation experiments are conducted using the best-performing LightGBM model to evaluate the contribution of different feature groups. Each feature group is removed individually while keeping model hyperparameters fixed, and the model is retrained, recalibrated, and re-evaluated on the same patient-level split. This setup isolates the impact of each data modality on predictive performance.
 
 ## Citation
 
